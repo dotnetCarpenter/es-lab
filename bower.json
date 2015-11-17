@@ -1,0 +1,25 @@
+{
+  "name": "traits.js",
+  "homepage": "(https://github.com/dotnetCarpenter/traits.js",
+  "authors": [
+    "tvcutsem"
+  ],
+  "description": "Javascript library for Trait composition",
+  "main": "src/traits.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "traits",
+    "composition"
+  ],
+  "license": "ALv2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
