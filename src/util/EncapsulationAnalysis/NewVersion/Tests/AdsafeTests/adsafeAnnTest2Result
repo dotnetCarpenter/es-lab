@@ -1,8 +1,0 @@
-(NOTES: 
-(1) We map all functions to the corresponding declaration sites. Multiple instances of the same declaration site are shown as the same function 
-(2) Native prototype functions and attacker created functions are not shown 
-)
-
-Functions and DOM objects that the attacker can potentially hold are: 
-
-Total number of functions = 0

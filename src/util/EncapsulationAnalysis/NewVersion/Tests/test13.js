@@ -1,1 +1,0 @@
-attacker = {a: function reachable(){}}
