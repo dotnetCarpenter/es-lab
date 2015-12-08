@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/dotnetCarpenter/traits.js/issues"
   },
-  "homepage": "https://github.com/dotnetCarpenter/traits.js#readme"
+  "homepage": "https://github.com/dotnetCarpenter/traits.js#readme",
+  "devDependencies": {
+    "node-qunit-phantomjs": "^1.3.0"
+  }
 }
