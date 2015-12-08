@@ -14,12 +14,13 @@
     "traits",
     "composition"
   ],
-  "license": "ALv2",
+  "license": "ISC",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "site"    
   ]
 }
