@@ -1,3 +1,5 @@
+# traits.js [![Build Status](https://travis-ci.org/dotnetCarpenter/traits.js.svg?branch=master)](https://travis-ci.org/dotnetCarpenter/traits.js)
+
 # Introduction #
 
 [traits.js](http://code.google.com/p/es-lab/source/browse/trunk/src/traits/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#References.md)] but closer to the object-based, lexically nestable traits defined in [[2](#References.md)]. The library has been designed for [Ecmascript 5.1](http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
