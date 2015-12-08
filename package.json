@@ -1,6 +1,6 @@
 {
   "name": "traits.js",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "src/traits.js",
   "directories": {
