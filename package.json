@@ -1,0 +1,28 @@
+{
+  "name": "traits.js",
+  "version": "0.5.0",
+  "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
+  "main": "traits.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node-qunit-phantomjs test.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotnetCarpenter/traits.js.git"
+  },
+  "keywords": [
+    "traits",
+    "object",
+    "composition",
+    "OOP"
+  ],
+  "author": "Tom Van Cutsem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dotnetCarpenter/traits.js/issues"
+  },
+  "homepage": "https://github.com/dotnetCarpenter/traits.js#readme"
+}
