@@ -38,8 +38,16 @@ this.runTraitsTests = function() {
   };
   
   function getOwnPropertyNames(obj) {
+    if (Object.getOwnPropertyNames !== undefined) {
+      return Object.getOwnPropertyNames(obj);
+    }
+    // approximate fall-back: only returns enumerable own properties
     var props = [];
-    for (var p in obj) { if (Object.prototype.hasOwnProperty.call(obj,p)) { props.push(p); } }
+    for (var p in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj,p)) {
+        props.push(p);
+      }
+    }
     return props;
   };
   
@@ -89,7 +97,7 @@ this.runTraitsTests = function() {
     return {
       value: fun,
       method: true,
-      enumerable: true
+      enumerable: false
     };
   }
   
