@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dotnetCarpenter/traits.js.git"
+    "url": "git+https://github.com/traitsjs/traits.js.git"
   },
   "keywords": [
     "traits",
@@ -22,14 +22,14 @@
   "author": "Tom Van Cutsem",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/dotnetCarpenter/traits.js/issues"
+    "url": "https://github.com/traitsjs/traits.js/issues"
   },
-  "homepage": "https://github.com/dotnetCarpenter/traits.js#readme",
+  "homepage": "https://github.com/traitsjs/traits.js#readme",
   "devDependencies": {
     "node-qunit-phantomjs": "^1.3.0"
   },
   "contributors": [
-    "Jon Ege Ronnenberg",
+    "dotnetCarpenter",
     "Nathan Stott",
     "Mark S. Miller"
   ]

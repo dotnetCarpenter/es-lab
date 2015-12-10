@@ -1,4 +1,4 @@
-# traits.js [![Build Status](https://travis-ci.org/dotnetCarpenter/traits.js.svg?branch=master)](https://travis-ci.org/dotnetCarpenter/traits.js) [![NPM version](https://badge.fury.io/js/traitsjs.svg)](http://badge.fury.io/js/traitsjs) [![Dependencies](https://david-dm.org/dotnetCarpenter/traits.js.png)](https://david-dm.org/dotnetCarpenter/traits.js)
+# traits.js [![Build Status](https://travis-ci.org/traitsjs/traits.js.svg?branch=master)](https://travis-ci.org/traitsjs/traits.js) [![NPM version](https://badge.fury.io/js/traitsjs.svg)](http://badge.fury.io/js/traitsjs) [![Dependencies](https://david-dm.org/traitsjs/traits.js.png)](https://david-dm.org/traitsjs/traits.js)
 
     npm install traitsjs
 
