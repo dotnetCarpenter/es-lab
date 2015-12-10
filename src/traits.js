@@ -658,6 +658,8 @@ var Trait = (function(){
   
 })();
 
-if (typeof exports !== "undefined") { // CommonJS module support
+if (typeof module !== "undefined") { // NodeJS default export
+  module.exports = Trait;
+} else if (typeof exports !== "undefined") { // CommonJS module support
   exports.Trait = Trait;
 }
