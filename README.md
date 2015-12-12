@@ -402,13 +402,12 @@ A `literal-property-map` is a property map defined as an object literal, with al
 If Javascript would at some point have the notion of interfaces or "brands" to classify objects, the API of the `create` function could be extended to allow for objects to be "branded" as follows:
 
 ```js
-var o = Trait.create(proto, trait, { implements: [ brand1, brand2, ... ] });```
+var o = Trait.create(proto, trait, { implements: [ brand1, brand2, ... ] });
+```
 
 ## Open issues ##
 
 Trait composers cannot make methods "inherited" from a trait private.
-
-
 
 Required methods of a trait must, by design, be provided by other traits as part of their public interface, and thus also become part of the public interface of instantiated objects. If a trait really requires a method that ought to be private in the final composition, it can use lexical encapsulation to hide such required methods:
 
