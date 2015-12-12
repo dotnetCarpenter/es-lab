@@ -239,8 +239,9 @@ When a property `foo` is renamed or excluded, `foo` is bound to `Trait.required`
 
 ```js
 var Talias = Trait.compose(T1,
-              Trait.resolve({ a: 'd' }, T2),
-              Trait({ a: this.d }));
+                Trait.resolve({ a: 'd' }, T2),
+                Trait({ a: this.d })
+             );
 ```
 
 In this case, `a` is renamed to `d` by `Trait.resolve` and a new property `a` is added that refers to the renamed property.
@@ -249,11 +250,9 @@ In this case, `a` is renamed to `d` by `Trait.resolve` and a new property `a` is
 
 Conflicts can also be resolved by means of overriding. The `Trait.override` function takes any number of traits and returns a composite trait containing all properties of its argument traits. In contrast to `compose`, `override` does not generate conflicts upon name clashes, but rather overrides the conflicting property with that of a trait with higher precedence. Trait precedence is from left to right, i.e. the properties of the first argument to `override` are never overridden. For example:
 
-
-
-<pre><code>var Toverride = Trait.override(T1, T2);
-
-</code></pre>
+```js
+var Toverride = Trait.override(T1, T2);
+```
 
 `Toverride` is equivalent to:
 
