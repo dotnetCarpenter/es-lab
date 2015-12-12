@@ -150,17 +150,17 @@ The attributes `required` and `method` are not standard ES5 attributes, but are 
 
 The objects passed to `Trait` should normally only serve as plain records that describe a simple trait's properties. We expect them to be used mostly in conjunction with Javascript's excellent object literal syntax. The `Trait` function turns an object into a property descriptor map with the following constraints:
 
-<ul><li>Only the object's own properties are turned into trait properties (its prototype is not significant).
++ Only the object's own properties are turned into trait properties (its prototype is not significant).
 
-</li><li>Data properties in the object record bound to the special `Trait.required` singleton are bound to a distinct "required" property descriptor (as shown above).
++ Data properties in the object record bound to the special `Trait.required` singleton are bound to a distinct "required" property descriptor (as shown above).
 
-</li><li>Data properties in the object record bound to functions are interpreted as "methods". In order to ensure integrity, methods are distinguished from plain Javascript functions by `traits.js` in the following ways:
++ Data properties in the object record bound to functions are interpreted as "methods". In order to ensure integrity, methods are distinguished from plain Javascript functions by `traits.js` in the following ways:
 
-<ul><li>The methods and the value of their `.prototype` property are frozen.
+  + The methods and the value of their `.prototype` property are frozen.
 
-</li><li>Methods are 'bound' to an object at instantiation time (see later). The binding of `this` in the method's body is bound to the instantiated object.
+  + Methods are 'bound' to an object at instantiation time (see later). The binding of `this` in the method's body is bound to the instantiated object.
 
-</li></ul></li><li>`Trait` is a pure function if no other code has a reference to any of the object record's methods. If `Trait` is applied to an object literal whose methods are represented as anonymous in-place functions as recommended, this should be the case.</li></ul>
++ `Trait` is a pure function if no other code has a reference to any of the object record's methods. If `Trait` is applied to an object literal whose methods are represented as anonymous in-place functions as recommended, this should be the case.
 
 #### Composing Traits ####
 
@@ -190,11 +190,11 @@ When `compose` encounters a property name that is defined by two or more argumen
 
 
 
-Two properties `p1` and `p2` with the same name are <b>not</b> in conflict if:
+Two properties `p1` and `p2` with the same name are **not** in conflict if:
 
-<ul><li>`p1` or `p2` is a `required` property. If either `p1` or `p2` is a non-required property, the `required` property is overridden by the non-required property.
++ `p1` or `p2` is a `required` property. If either `p1` or `p2` is a non-required property, the `required` property is overridden by the non-required property.
 
-</li><li>`p1` and `p2` denote the "same" property. Two properties are considered to be the same if they refer to the same values and have the same attributes. This implies that it is OK for properties to be "inherited" via multiple composition paths from the same trait (cf. diamond inheritance: `T1 = Trait.compose(T2,T3)` where `T2 = Trait.compose(T4,...)` and `T3 = Trait.compose(T4, ...)`.</li></ul>
++ `p1` and `p2` denote the "same" property. Two properties are considered to be the same if they refer to the same values and have the same attributes. This implies that it is OK for properties to be "inherited" via multiple composition paths from the same trait (cf. diamond inheritance: `T1 = Trait.compose(T2,T3)` where `T2 = Trait.compose(T4,...)` and `T3 = Trait.compose(T4, ...)`.
 
 `compose` is a commutative and associative operation: the ordering of its arguments does not matter, and `compose(t1,t2,t3)` is equivalent to, for example, `compose(t1,compose(t2,t3))` or `compose(compose(t2,t1),t3)`.
 
@@ -275,13 +275,13 @@ Since traits are just property maps, they can simply be instantiated by calling 
 
 The `traits.js` library additionally provides a function `Trait.create`, analogous to the built-in `Object.create`, to instantiate a trait into an object. The call `Trait.create(proto, trait)` creates and returns a new object `o` that inherits from `proto` and that has all of the properties described by the argument trait. Additionally:
 
-<ul><li>an exception is thrown if 'trait' contains `required` properties.
++ an exception is thrown if 'trait' contains `required` properties.
 
-</li><li>an exception is thrown if 'trait' contains `conflict` properties.
++ an exception is thrown if 'trait' contains `conflict` properties.
 
-</li><li>the instantiated object and all of its accessor and method properties are frozen.
++ the instantiated object and all of its accessor and method properties are frozen.
 
-</li><li>the `this` pseudovariable in all accessors and methods of the object is bound to the instantiated object.</li></ul>
++ the `this` pseudovariable in all accessors and methods of the object is bound to the instantiated object.
 
 For example, calling `Trait.create(Object.prototype, Toverride)` results in an object that inherits from `Object.prototype` and has a structure as if defined by:
 
@@ -326,19 +326,21 @@ var makeStatefulTrait(x) {
 
 In the case of `StatefulTrait`, if this trait is used to instantiate multiple objects, those objects will implicitly share the mutable variable `x`:
 
-<pre><code>// bad: invoking o1.n(0) will cause o2.m() to return '0', implicit shared state
+```js
+// bad: invoking o1.n(0) will cause o2.m() to return '0', implicit shared state
 
 var o1 = Trait.create(Object.prototype, StatefulTrait);
 
 var o2 = Trait.create(Object.prototype, StatefulTrait);
-
-</code></pre>
+```
 
 In the case of `makeStatefulTrait`, that state can be made local to each trait instance if a new trait is created for each separate instantiation:
 
 ```js
 // good: invoking o1.n(0) will not affect the result of o2.m()
+
 var o1 = Trait.create(Object.prototype, makeStatefulTrait(5));
+
 var o2 = Trait.create(Object.prototype, makeStatefulTrait(5));
 ```
 
