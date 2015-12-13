@@ -1,17 +1,17 @@
 # traits.js [![Build Status](https://travis-ci.org/traitsjs/traits.js.svg?branch=master)](https://travis-ci.org/traitsjs/traits.js) [![NPM version](https://badge.fury.io/js/traitsjs.svg)](http://badge.fury.io/js/traitsjs) [![Dependencies](https://david-dm.org/traitsjs/traits.js.png)](https://david-dm.org/traitsjs/traits.js)
 
 ```
-npm install traitsjs
+npm install traits.js
 ```
 
 Then:
 ```js
-    var Trait = require('traitsjs');
+var Trait = require('traits.js');
 ```
 
 # Introduction #
 
-[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.1/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#References.md)] but closer to the object-based, lexically nestable traits defined in [[2](#References.md)]. The library has been designed for [Ecmascript 5.1](http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
+[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.1/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#ref2)]. The library has been designed for [Ecmascript 5.1](http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
 
 See also: **[API](http://traitsjs.github.io/traits.js-website/api)** | **[Tutorial](http://traitsjs.github.io/traits.js-website/tutorial.html)** | **[howtonode article](http://howtonode.org/traitsjs)** | **[Paper](http://traitsjs.github.io/traits.js-website/files/traitsJS_PLASTIC2011_final.pdf)**
 
@@ -429,7 +429,7 @@ var o = Trait.create(
 
 ## References ##
 
-+ [<a href='1.md'>1</a>] "Traits: Composable units of Behavior" (Scharli et al., ECOOP 2003) (<a href='http://scg.unibe.ch/archive/papers/Scha03aTraits.pdf'>paper</a>): *the original presentation of traits, including a deep discussion on the advantages of traits over mixins and multiple inheritance.*
-+ [<a href='2.md'>2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='http://prog.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to Javascript.*
-+ [<a href='3.md'>3</a>] "Applying Traits to the Smalltalk Collection Classes" (Black et al., OOPSLA 2003) (<a href='http://scg.unibe.ch/archive/papers/Blac03aTraitsHierarchy.pdf'>paper</a>): *describes a concrete experiment in which traits were used to refactor the Smalltalk Collections hierarchy.*
-+ [<a href='4.md'>4</a>] "Scheme with Classes, Mixins and Traits" (Flatt et al., APLAS 2006) (<a href='http://www.cs.utah.edu/plt/publications/aplas06-fff.pdf'>paper</a> ): *section 7, related work provides a very comprehensive discussion on the overloaded meaning of the words mixins and traits in various programming languages*
++ [<i id=ref1>1</i>] "Traits: Composable units of Behavior" (Scharli et al., ECOOP 2003) (<a href='http://scg.unibe.ch/archive/papers/Scha03aTraits.pdf'>paper</a>): *the original presentation of traits, including a deep discussion on the advantages of traits over mixins and multiple inheritance.*
++ [<a id="ref2>2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='http://prog.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to Javascript.*
++ [<a id="ref3">3</a>] "Applying Traits to the Smalltalk Collection Classes" (Black et al., OOPSLA 2003) (<a href='http://scg.unibe.ch/archive/papers/Blac03aTraitsHierarchy.pdf'>paper</a>): *describes a concrete experiment in which traits were used to refactor the Smalltalk Collections hierarchy.*
++ [<a id="ref4">4</a>] "Scheme with Classes, Mixins and Traits" (Flatt et al., APLAS 2006) (<a href='http://www.cs.utah.edu/plt/publications/aplas06-fff.pdf'>paper</a> ): *section 7, related work provides a very comprehensive discussion on the overloaded meaning of the words mixins and traits in various programming languages*
