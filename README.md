@@ -351,11 +351,11 @@ This [example code](http://code.google.com/p/es-lab/source/browse/trunk/src/trai
 
 
 
-The <a href='http://code.google.com/p/es-lab/source/browse/trunk/src/traits/trait-example.js'>animationtrait example</a> is a direct translation of the same example from [<a href='#References.md'>2</a>], showcasing stateful traits.
+The <a href='http://code.google.com/p/es-lab/source/browse/trunk/src/traits/trait-example.js'>animationtrait example</a> is a direct translation of the same example from [<a href='#user-content-ref2'>2</a>], showcasing stateful traits.
 
 
 
-The <a href='http://code.google.com/p/es-lab/source/browse/trunk/tests/traits/traitstests.js'>unit tests</a> are a valuable resource for understanding the detailed semantics of the composition operators.
+The <a href='http://traitsjs.github.io/traits.js-website/test.html'>unit tests</a> are a valuable resource for understanding the detailed semantics of the composition operators.
 
 
 
