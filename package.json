@@ -1,6 +1,6 @@
 {
   "name": "traits.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "src/traits.js",
   "directories": {
@@ -20,7 +20,9 @@
     "OOP"
   ],
   "author": "Tom Van Cutsem",
-  "maintainers": ["Jon Ege Ronnenberg <jon.ronnenberg+traits.js@gmail.com>"],
+  "maintainers": [
+    "Jon Ege Ronnenberg <jon.ronnenberg+traits.js@gmail.com>"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/traitsjs/traits.js/issues"
