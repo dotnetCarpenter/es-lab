@@ -347,15 +347,13 @@ var o2 = Trait.create(Object.prototype, makeStatefulTrait(5));
 
 ## Examples ##
 
-This [example code](http://code.google.com/p/es-lab/source/browse/trunk/src/traits/examples.js) demonstrates how `traits.js` is used to build reusable "enumerable" and "comparable" abstractions as traits. It also shows how a concrete collection-like object (in this case an interval data type) can make use of such traits. For an in-depth discussion of how traits can be used to build a real Collections API, see [<a href='#user-content-ref3'>3</a>].
+This [example code](https://github.com/traitsjs/traits.js/blob/master/src/examples.js) demonstrates how `traits.js` is used to build reusable "enumerable" and "comparable" abstractions as traits. It also shows how a concrete collection-like object (in this case an interval data type) can make use of such traits. For an in-depth discussion of how traits can be used to build a real Collections API, see [<a href='#user-content-ref3'>3</a>].
 
 
-
-The <a href='http://code.google.com/p/es-lab/source/browse/trunk/src/traits/trait-example.js'>animationtrait example</a> is a direct translation of the same example from [<a href='#user-content-ref2'>2</a>], showcasing stateful traits.
-
+The [animationtrait example](https://github.com/traitsjs/traits.js/blob/master/src/trait-example.js) is a direct translation of the same example from [<a href='#user-content-ref2'>2</a>], showcasing stateful traits.
 
 
-The <a href='http://traitsjs.github.io/traits.js-website/test.html'>unit tests</a> are a valuable resource for understanding the detailed semantics of the composition operators.
+The [unit tests](http://traitsjs.github.io/traits.js-website/test.html) are a valuable resource for understanding the detailed semantics of the composition operators.
 
 
 
@@ -364,9 +362,7 @@ The <a href='http://traitsjs.github.io/traits.js-website/test.html'>unit tests</
 Because trait composition is essentially flattened out when a trait is instantiated into an object, method lookup of trait methods is confined only to the constructed object itself. There is no inheritance chain to traverse in order to look up trait methods.
 
 
-
 The downside of trait composition by flattening is that the number of methods per object is larger. To reduce the memory footprint, an efficient implementation should share the property structure resulting from a trait instantiation between all objects instantiated from the same `create` callsite. That is, it should be able to construct a single vtable to be shared by all objects returned from a single `create` callsite.
-
 
 
 While designing this library, great care has been taken to allow a Javascript engine to partially evaluate trait composition at "compile-time". In order for the partial evaluation scheme to work, programmers should use the library with some restrictions:
@@ -383,7 +379,7 @@ Partial evaluation would enable a smart implementation to transform the composit
 
 ```js
 Trait({ a: 1, ... }) // => literal-property-map
-Trait.compose(trait({ a: 1 }), Trait({ b: 2})) // => Trait({ a:1, b:2 })
+Trait.compose(Trait({ a: 1 }), Trait({ b: 2})) // => Trait({ a:1, b:2 })
 Trait.resolve({ a: 'x' , ... } , Trait({ a: 1, b: 2, ... })) // => Trait({ a: Trait.required, x: 1, b:2, ... })
 Trait.resolve({ a: undefined, ... }, Trait({ a: 1, b: 2, ...})) // => Trait({ b: 2, ... })
 Trait.override(Trait({a: 1, b: 2}), Trait({ a: 3, b: 4, c: 5 })) // => Trait({ a: 1, b:2, c: 5})
