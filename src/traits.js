@@ -78,9 +78,6 @@ var Trait = (function(){
       };
   
   var freeze = Object.freeze || function(obj) { return obj; };
-  var getPrototypeOf = Object.getPrototypeOf || function(obj) { 
-    return Object.prototype;
-  };
   var getOwnPropertyNames = Object.getOwnPropertyNames ||
       function(obj) {
         var props = [];
