@@ -1,4 +1,4 @@
-# traits.js [![Build Status](https://travis-ci.org/traitsjs/traits.js.svg?branch=master)](https://travis-ci.org/traitsjs/traits.js) [![NPM version](https://badge.fury.io/js/traitsjs.svg)](http://badge.fury.io/js/traits.js) [![Dependencies](https://david-dm.org/traitsjs/traits.js.png)](https://david-dm.org/traitsjs/traits.js)
+# traits.js [![Build Status](https://travis-ci.org/traitsjs/traits.js.svg?branch=master)](https://travis-ci.org/traitsjs/traits.js) [![codecov.io](https://codecov.io/github/traitsjs/traits.js/coverage.svg?branch=master)](https://codecov.io/github/traitsjs/traits.js?branch=master) [![NPM version](https://badge.fury.io/js/traits.js.svg)](http://badge.fury.io/js/traits.js) [![Dependencies](https://david-dm.org/traitsjs/traits.js.png)](https://david-dm.org/traitsjs/traits.js)
 
 ```
 npm install traits.js
