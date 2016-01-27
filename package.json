@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "posttest": "codecov"
   },
   "repository": {
     "type": "git",
