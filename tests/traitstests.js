@@ -502,7 +502,7 @@ this.runTraitsTests = function() {
                    Trait({ foo: Trait.required }));
       ok(false, 'expected create to complain about missing required props');
     } catch(e) {
-      strictEqual( e.toString(), 'Error: Missing required property: foo', 'required prop error');
+      strictEqual( e.message, 'Missing required property: foo', 'required prop error');
     }
   });
   
@@ -512,7 +512,7 @@ this.runTraitsTests = function() {
                    Trait.compose(Trait({ a: 0 }), Trait({ a: 1 })));
       ok(false, 'expected create to complain about unresolved conflicts');
     } catch(e) {
-      strictEqual( e.toString(), 'Error: Remaining conflicting property: a', 'conflicting prop error');
+      strictEqual( e.message, 'Remaining conflicting property: a', 'conflicting prop error');
     }
   });
   
@@ -556,7 +556,7 @@ this.runTraitsTests = function() {
         (o5.a, o5.a()); // accessor or data prop
         ok(false, 'expected conflicting prop to cause exception');
       } catch (e) {
-        strictEqual( e.toString(), 'Error: Conflicting property: a', 'conflicting prop access error');
+        strictEqual( e.message, 'Conflicting property: a', 'conflicting prop access error');
       }
     } catch(e) {
       ok(false, 'did not expect create to complain about conflicting props');
@@ -589,7 +589,7 @@ this.runTraitsTests = function() {
       var o = Trait.create(Object.prototype, T4);
       ok(false, 'expected diamond prop to cause exception');
     } catch(e) {
-      strictEqual( e.toString(), 'Error: Remaining conflicting property: m', 'diamond prop conflict');
+      strictEqual( e.message, 'Remaining conflicting property: m', 'diamond prop conflict');
     }
   });
     
