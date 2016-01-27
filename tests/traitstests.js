@@ -477,6 +477,8 @@ this.runTraitsTests = function() {
                           Trait({a:1, b:function() {return this.a; }}));
     if (Object.getPrototypeOf) {
       strictEqual( Object.getPrototypeOf(o1), Object.prototype, "o1 prototype");
+    } else {
+      strictEqual( o1.constructor.prototype, Object.prototype, "o1 prototype");
     }
     strictEqual( o1.a, 1, 'o1.a');
     strictEqual( o1.b(), 1, 'o1.b()');
@@ -488,7 +490,7 @@ this.runTraitsTests = function() {
     if (Object.getPrototypeOf) {
       strictEqual( Object.getPrototypeOf(o2), Array.prototype, "o2 prototype");
     } else {
-      strictEqual( o2.prototype, Array.prototype, "o2 prototype");
+      strictEqual( o2.constructor.prototype, Array.prototype, "o2 prototype");
     }
   });
   
