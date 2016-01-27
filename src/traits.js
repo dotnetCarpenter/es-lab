@@ -71,16 +71,11 @@ var Trait = (function(){
   var slice = bindThis(call, Array.prototype.slice);
     
   // feature testing such that traits.js runs on both ES3 and ES5
-  var forEach = Array.prototype.forEach ?
-      bindThis(call, Array.prototype.forEach) :
-      function(arr, fun) {
+  var forEach = function(arr, fun) {
         for (var i = 0, len = arr.length; i < len; i++) { fun(arr[i]); }
       };
   
   var freeze = Object.freeze || function(obj) { return obj; };
-  var getPrototypeOf = Object.getPrototypeOf || function(obj) { 
-    return Object.prototype;
-  };
   var getOwnPropertyNames = Object.getOwnPropertyNames ||
       function(obj) {
         var props = [];
