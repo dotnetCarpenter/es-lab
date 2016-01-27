@@ -476,17 +476,19 @@ this.runTraitsTests = function() {
     var o1 = Trait.create(Object.prototype,
                           Trait({a:1, b:function() {return this.a; }}));
     if (Object.getPrototypeOf) {
-      strictEqual(Object.prototype, Object.getPrototypeOf(o1), "o1 prototype");
+      strictEqual( Object.getPrototypeOf(o1), Object.prototype, "o1 prototype");
     }
-    strictEqual(1, o1.a, 'o1.a');
-    strictEqual(1, o1.b(), 'o1.b()');
-    strictEqual(2, getOwnPropertyNames(o1).length, 'Object.keys(o1).length === 2');
+    strictEqual( o1.a, 1, 'o1.a');
+    strictEqual( o1.b(), 1, 'o1.b()');
+    strictEqual( getOwnPropertyNames(o1).length, 2, 'Object.keys(o1).length === 2');
   });
   
   test('create with prototype', function(){
     var o2 = Trait.create(Array.prototype, Trait({}));
     if (Object.getPrototypeOf) {
-      strictEqual(Array.prototype, Object.getPrototypeOf(o2), "o2 prototype");
+      strictEqual( Object.getPrototypeOf(o2), Array.prototype, "o2 prototype");
+    } else {
+      strictEqual( o2.prototype, Array.prototype, "o2 prototype");
     }
   });
   
@@ -498,7 +500,7 @@ this.runTraitsTests = function() {
                    Trait({ foo: Trait.required }));
       ok(false, 'expected create to complain about missing required props');
     } catch(e) {
-      strictEqual('Error: Missing required property: foo', e.toString(), 'required prop error');
+      strictEqual( e.toString(), 'Error: Missing required property: foo', 'required prop error');
     }
   });
   
@@ -508,7 +510,7 @@ this.runTraitsTests = function() {
                    Trait.compose(Trait({ a: 0 }), Trait({ a: 1 })));
       ok(false, 'expected create to complain about unresolved conflicts');
     } catch(e) {
-      strictEqual('Error: Remaining conflicting property: a', e.toString(), 'conflicting prop error');
+      strictEqual( e.toString(), 'Error: Remaining conflicting property: a', 'conflicting prop error');
     }
   });
   
@@ -521,10 +523,10 @@ this.runTraitsTests = function() {
       // even though the function is effectively frozen (can't add new properties)
       // ok(Object.isFrozen(o3.m), 'closed create freezes methods');
     }
-    strictEqual(o3, o3.m(), 'this refers to composite object');
+    strictEqual( o3.m(), o3, 'this refers to composite object');
     // verify 'this' bound in ES5
     if (Function.prototype.bind) {
-      strictEqual(o3, o3.m.call({}), 'this bound to composite object');
+      strictEqual( o3.m.call({}), o3, 'this bound to composite object');
     }
   });
   
@@ -552,7 +554,7 @@ this.runTraitsTests = function() {
         (o5.a, o5.a()); // accessor or data prop
         ok(false, 'expected conflicting prop to cause exception');
       } catch (e) {
-        strictEqual('Error: Conflicting property: a', e.toString(), 'conflicting prop access error');
+        strictEqual( e.toString(), 'Error: Conflicting property: a', 'conflicting prop access error');
       }
     } catch(e) {
       ok(false, 'did not expect create to complain about conflicting props');
@@ -566,11 +568,11 @@ this.runTraitsTests = function() {
       ok(!(Object.isFrozen(o6)), 'open create does not freeze object');
       ok(!(Object.isFrozen(o6.m)), 'open create does not freeze methods');
     }
-    strictEqual(o6, o6.m(), 'this refers to composite object');
+    strictEqual( o6.m(), o6, 'this refers to composite object');
     // verify 'this' unbound in ES5
     if (Function.prototype.bind) {
       var fakethis = {};
-      strictEqual(fakethis, o6.m.call(fakethis), 'this not bound to composite object');
+      strictEqual( o6.m.call(fakethis), fakethis, 'this not bound to composite object');
     }
   });
     
@@ -585,7 +587,7 @@ this.runTraitsTests = function() {
       var o = Trait.create(Object.prototype, T4);
       ok(false, 'expected diamond prop to cause exception');
     } catch(e) {
-      strictEqual('Error: Remaining conflicting property: m', e.toString(), 'diamond prop conflict');
+      strictEqual( e.toString(), 'Error: Remaining conflicting property: m', 'diamond prop conflict');
     }
   });
     
