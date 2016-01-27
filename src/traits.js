@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// See http://code.google.com/p/es-lab/wiki/Traits
+// See https://github.com/traitsjs/traits.js
 // for background on traits and a description of this library
 
 var Trait = (function(){
