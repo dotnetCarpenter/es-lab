@@ -21,6 +21,7 @@
     "bower_components",
     "test",
     "tests",
-    "site"    
+    "site",
+    "karma.conf.js"    
   ]
 }
