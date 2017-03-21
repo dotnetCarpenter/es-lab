@@ -11,15 +11,15 @@ var Trait = require('traits.js');
 
 # Introduction #
 
-[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.1/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
+[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.3/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
 
-See also: **[API](http://traitsjs.github.io/traits.js-website/api)** | **[Tutorial](http://traitsjs.github.io/traits.js-website/tutorial.html)** | **[howtonode article](http://howtonode.org/traitsjs)** | **[Paper](http://traitsjs.github.io/traits.js-website/files/traitsJS_PLASTIC2011_final.pdf)**
+See also: **[API](https://traitsjs.github.io/traits.js-website/api)** | **[Tutorial](https://traitsjs.github.io/traits.js-website/tutorial.html)** | **[howtonode article](https://howtonode.org/traitsjs)** | **[Paper](https://traitsjs.github.io/traits.js-website/files/traitsJS_PLASTIC2011_final.pdf)**
 
 # Background: Traits #
 
 Traits were originally defined as 'composable units of behavior' [[1](#user-content-ref1)]: reusable groups of methods that can be composed together to form a class. Their purpose is to enable _reuse_ of methods across class hierarchies. Single-inheritance class hierarchies often suffer from methods being duplicated across the hierarchy, because a class cannot inherit methods from two separate sources.
 
-Traits may _provide_ and _require_ a number of methods. Required methods are like abstract methods in OO class hierarchies: their implementation should be provided by another trait or class. For example, "enumerability" of a collection object can be encoded as a trait providing all kinds of higher-order methods on collections based on a single method `each` that returns successive elements of the collection (cf. Ruby's [Enumerable module](http://ruby-doc.org/core/classes/Enumerable.html)) (in pseudo-code for clarity):
+Traits may _provide_ and _require_ a number of methods. Required methods are like abstract methods in OO class hierarchies: their implementation should be provided by another trait or class. For example, "enumerability" of a collection object can be encoded as a trait providing all kinds of higher-order methods on collections based on a single method `each` that returns successive elements of the collection (cf. Ruby's [Enumerable module](https://ruby-doc.org/core/classes/Enumerable.html)) (in pseudo-code for clarity):
 
 ```
 trait Enumerable {
@@ -51,7 +51,7 @@ Name clashes that are never explicitly resolved will eventually lead to a compos
 
 Trait composition is declarative in the sense that the ordering of composed traits does not matter. In other words, unlike mixins/multiple inheritance, trait composition is commutative and associative. This tremendously reduces the cognitive burden of reasoning about deeply nested levels of trait composition. In languages that support traits as a compile-time entity (similar to classes), trait composition can be entirely performed at compile-time, effectively "flattening" the composition and eliminating any composition overhead at runtime.
 
-Since their publication in 2003, traits have received widespread adoption in the PL community, although the details of the many traits implementations differ significantly from the original implementation defined for Smalltalk. Traits have been adopted in Perl (see e.g. the [Class::Trait module](http://search.cpan.org/~ovid/Class-Trait-0.31/lib/Class/Trait.pm)), Fortress, PLT Scheme [[4](#user-content-ref4)], Slate, ... Scala supports ["traits"](http://www.scala-lang.org/node/126), although these should have been called [mixins](http://www.scala-lang.org/node/117) (there is no explicit conflict resolution). Traits are also considered for inclusion in [PHP](http://wiki.php.net/rfc/horizontalreuse).
+Since their publication in 2003, traits have received widespread adoption in the PL community, although the details of the many traits implementations differ significantly from the original implementation defined for Smalltalk. Traits have been adopted in Perl (see e.g. the [Class::Trait module](http://search.cpan.org/~ovid/Class-Trait-0.31/lib/Class/Trait.pm)), Fortress, PLT Scheme [[4](#user-content-ref4)], Slate, ... Scala supports ["traits"](http://www.scala-lang.org/node/126), although these should have been called [mixins](http://www.scala-lang.org/node/117) (there is no explicit conflict resolution). Traits are also considered for inclusion in [PHP](https://wiki.php.net/rfc/horizontalreuse).
 
 
 # Traits for Javascript #
@@ -104,7 +104,7 @@ As mentioned in the background, trait composition is orthogonal to inheritance. 
 The function `Trait.eqv(t1,t2)` returns `true` if and only if t1 and t2 are equivalent. Two traits are equivalent if they describe the same set of property names, and the property descriptors bound to these names have identical attributes.
 
 The following figure depicts the operations exported by the library:
-<p><img src='http://traitsjs.github.io/traits.js-website/images/Traits.png' alt='Traits' align='center' width='80%'>
+<p><img src='https://traitsjs.github.io/traits.js-website/images/Traits.png' alt='Traits' align='center' width='80%'>
 <p>Both the circles and the rounded squares are Javascript objects, but they are intended to be used in very different ways.
 
 
@@ -353,7 +353,7 @@ This [example code](https://github.com/traitsjs/traits.js/blob/master/src/exampl
 The [animationtrait example](https://github.com/traitsjs/traits.js/blob/master/src/trait-example.js) is a direct translation of the same example from [<a href='#user-content-ref2'>2</a>], showcasing stateful traits.
 
 
-The [unit tests](http://traitsjs.github.io/traits.js-website/test.html) are a valuable resource for understanding the detailed semantics of the composition operators.
+The [unit tests](https://traitsjs.github.io/traits.js-website/test.html) are a valuable resource for understanding the detailed semantics of the composition operators.
 
 
 
@@ -428,6 +428,6 @@ var o = Trait.create(
 ## References ##
 
 + [<a id=ref1>1</a>] "Traits: Composable units of Behavior" (Scharli et al., ECOOP 2003) (<a href='http://scg.unibe.ch/archive/papers/Scha03aTraits.pdf'>paper</a>): *the original presentation of traits, including a deep discussion on the advantages of traits over mixins and multiple inheritance.*
-+ [<a id="ref2">2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='http://prog.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to Javascript.*
++ [<a id="ref2">2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='https://soft.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to Javascript.*
 + [<a id="ref3">3</a>] "Applying Traits to the Smalltalk Collection Classes" (Black et al., OOPSLA 2003) (<a href='http://scg.unibe.ch/archive/papers/Blac03aTraitsHierarchy.pdf'>paper</a>): *describes a concrete experiment in which traits were used to refactor the Smalltalk Collections hierarchy.*
-+ [<a id="ref4">4</a>] "Scheme with Classes, Mixins and Traits" (Flatt et al., APLAS 2006) (<a href='http://www.cs.utah.edu/plt/publications/aplas06-fff.pdf'>paper</a> ): *section 7, related work provides a very comprehensive discussion on the overloaded meaning of the words mixins and traits in various programming languages*
++ [<a id="ref4">4</a>] "Scheme with Classes, Mixins and Traits" (Flatt et al., APLAS 2006) (<a href='https://www.cs.utah.edu/plt/publications/aplas06-fff.pdf'>paper</a> ): *section 7, related work provides a very comprehensive discussion on the overloaded meaning of the words mixins and traits in various programming languages*
