@@ -18,7 +18,7 @@
 var Trait = (function(){
 
   // == Ancillary functions ==
-  
+
   var SUPPORTS_DEFINEPROP = (function() {
     try {
       var test = {};
@@ -28,7 +28,7 @@ var Trait = (function(){
       return false;
     }
   })();
-  
+
   // IE8 implements Object.defineProperty and Object.getOwnPropertyDescriptor
   // only for DOM objects. These methods don't work on plain objects.
   // Hence, we need a more elaborate feature-test to see whether the
@@ -37,7 +37,7 @@ var Trait = (function(){
     try {
       if (Object.getOwnPropertyDescriptor) {
         var test = {x:0};
-        return !!Object.getOwnPropertyDescriptor(test,'x');        
+        return !!Object.getOwnPropertyDescriptor(test,'x');
       }
     } catch(e) {}
     return false;
@@ -69,12 +69,12 @@ var Trait = (function(){
 
   var hasOwnProperty = bindThis(call, Object.prototype.hasOwnProperty);
   var slice = bindThis(call, Array.prototype.slice);
-    
-  // feature testing such that traits.js runs on both ES3 and ES5
+
+  // provide a simpler and faster forEach implementation than the native forEach in most browsers
   var forEach = function(arr, fun) {
-        for (var i = 0, len = arr.length; i < len; i++) { fun(arr[i]); }
-      };
-  
+    for (var i = 0, len = arr.length; i < len; i++) { fun(arr[i]); }
+  };
+
   var freeze = Object.freeze || function(obj) { return obj; };
   var getOwnPropertyNames = Object.getOwnPropertyNames ||
       function(obj) {
@@ -111,7 +111,7 @@ var Trait = (function(){
         dummy.prototype = proto || Object.prototype;
         self = new dummy();
         if (propMap) {
-          defineProperties(self, propMap);          
+          defineProperties(self, propMap);
         }
         return self;
       };
@@ -123,9 +123,9 @@ var Trait = (function(){
         });
         return map;
       };
-  
+
   // end of ES3 - ES5 compatibility functions
-  
+
   function makeConflictAccessor(name) {
     var accessor = function(var_args) {
       throw new Error("Conflicting property: "+name);
@@ -141,7 +141,7 @@ var Trait = (function(){
       required: true
     });
   }
-  
+
   function makeConflictingPropDesc(name) {
     var conflict = makeConflictAccessor(name);
     if (SUPPORTS_DEFINEPROP) {
@@ -150,7 +150,7 @@ var Trait = (function(){
        set: conflict,
        enumerable: false,
        conflict: true
-      }); 
+      });
     } else {
       return freeze({
         value: conflict,
@@ -159,7 +159,7 @@ var Trait = (function(){
       });
     }
   }
-  
+
   /**
    * Are x and y not observably distinguishable?
    */
@@ -178,7 +178,7 @@ var Trait = (function(){
   // Note: isSameDesc should return true if both
   // desc1 and desc2 represent a 'required' property
   // (otherwise two composed required properties would be turned into
-  // a conflict) 
+  // a conflict)
   function isSameDesc(desc1, desc2) {
     // for conflicting properties, don't compare values because
     // the conflicting property values are never equal
@@ -190,10 +190,10 @@ var Trait = (function(){
               && identical(desc1.value, desc2.value)
               && desc1.enumerable === desc2.enumerable
               && desc1.required === desc2.required
-              && desc1.conflict === desc2.conflict); 
+              && desc1.conflict === desc2.conflict);
     }
   }
-  
+
   function freezeAndBind(meth, self) {
     return freeze(bindThis(meth, self));
   }
@@ -216,10 +216,10 @@ var Trait = (function(){
   }
 
   // == singleton object to be used as the placeholder for a required
-  // property == 
-  
-  var required = freeze({ 
-    toString: function() { return '<Trait.required>'; } 
+  // property ==
+
+  var required = freeze({
+    toString: function() { return '<Trait.required>'; }
   });
 
   // == The public API methods ==
@@ -235,11 +235,11 @@ var Trait = (function(){
    * literal, since the object merely serves as a record
    * descriptor. Both its identity and its prototype chain are
    * irrelevant.
-   * 
+   *
    * Data properties bound to function objects in the argument will be
    * flagged as 'method' properties. The prototype of these function
    * objects is frozen.
-   * 
+   *
    * Data properties bound to the 'required' singleton exported by
    * this module will be marked as 'required' properties.
    *
@@ -276,7 +276,7 @@ var Trait = (function(){
    * @param trait_i a trait object
    * @returns a new trait containing the combined own properties of
    *          all the trait_i.
-   * 
+   *
    * If two or more traits have own properties with the same name, the new
    * trait will contain a 'conflict' property for that name. 'compose' is
    * a commutative and associative operation, and the order of its
@@ -289,35 +289,35 @@ var Trait = (function(){
   function compose(var_args) {
     var traits = slice(arguments, 0);
     var newTrait = {};
-    
+
     forEach(traits, function (trait) {
       forEach(getOwnPropertyNames(trait), function (name) {
         var pd = trait[name];
         if (hasOwnProperty(newTrait, name) &&
             !newTrait[name].required) {
-          
+
           // a non-required property with the same name was previously
           // defined this is not a conflict if pd represents a
           // 'required' property itself:
           if (pd.required) {
             return; // skip this property, the required property is
-   	            // now present 
+   	            // now present
           }
-            
+
           if (!isSameDesc(newTrait[name], pd)) {
             // a distinct, non-required property with the same name
             // was previously defined by another trait => mark as
 	    // conflicting property
-            newTrait[name] = makeConflictingPropDesc(name); 
+            newTrait[name] = makeConflictingPropDesc(name);
           } // else,
           // properties are not in conflict if they refer to the same value
-          
+
         } else {
           newTrait[name] = pd;
         }
       });
     });
-    
+
     return freeze(newTrait);
   }
 
@@ -334,7 +334,7 @@ var Trait = (function(){
   function exclude(names, trait) {
     var exclusions = makeSet(names);
     var newTrait = {};
-    
+
     forEach(getOwnPropertyNames(trait), function (name) {
       // required properties are not excluded but ignored
       if (!hasOwnProperty(exclusions, name) || trait[name].required) {
@@ -344,7 +344,7 @@ var Trait = (function(){
         newTrait[name] = makeRequiredPropDesc(name);
       }
     });
-    
+
     return freeze(newTrait);
   }
 
@@ -383,7 +383,7 @@ var Trait = (function(){
     });
     return freeze(newTrait);
   }
-  
+
   /**
    * var newTrait = override(dominantTrait, recessiveTrait)
    *
@@ -392,7 +392,7 @@ var Trait = (function(){
    *
    * Note: override is associative:
    *   override(t1, override(t2, t3)) is equivalent to
-   *   override(override(t1, t2), t3) 
+   *   override(override(t1, t2), t3)
    */
   /*function override(frontT, backT) {
     var newTrait = {};
@@ -405,10 +405,10 @@ var Trait = (function(){
       var pd = frontT[name];
       // frontT's required property does not override the provided property
       if (!(pd.required && hasOwnProperty(newTrait, name))) {
-        newTrait[name] = pd; 
-      }      
+        newTrait[name] = pd;
+      }
     });
-    
+
     return freeze(newTrait);
   }*/
 
@@ -442,7 +442,7 @@ var Trait = (function(){
       // required props are never renamed
       if (hasOwnProperty(map, name) && !trait[name].required) {
         var alias = map[name]; // alias defined in map
-        if (hasOwnProperty(renamedTrait, alias) && 
+        if (hasOwnProperty(renamedTrait, alias) &&
 	    !renamedTrait[alias].required) {
           // could happen if 2 props are mapped to the same alias
           renamedTrait[alias] = makeConflictingPropDesc(alias);
@@ -455,13 +455,13 @@ var Trait = (function(){
         // such a prop could exist if an earlier prop in the trait was
         // previously aliased to this name
         if (!hasOwnProperty(renamedTrait, name)) {
-          renamedTrait[name] = makeRequiredPropDesc(name);     
+          renamedTrait[name] = makeRequiredPropDesc(name);
         }
       } else { // no alias defined
         if (hasOwnProperty(renamedTrait, name)) {
           // could happen if another prop was previously aliased to name
           if (!trait[name].required) {
-            renamedTrait[name] = makeConflictingPropDesc(name);            
+            renamedTrait[name] = makeConflictingPropDesc(name);
           }
           // else required property overridden by a previously aliased
           // property and otherwise ignored
@@ -470,10 +470,10 @@ var Trait = (function(){
         }
       }
     });
-    
+
     return freeze(renamedTrait);
   }
-  
+
   /**
    * var newTrait = resolve({ oldName: 'newName', excludeName:
    * undefined, ... }, trait)
@@ -500,7 +500,7 @@ var Trait = (function(){
    * and rename are not associative, for example:
    * rename({a: 'b'}, exclude(['b'], trait({ a:1,b:2 }))) eqv trait({b:1})
    * exclude(['b'], rename({a: 'b'}, trait({ a:1,b:2 }))) eqv
-   * trait({b:Trait.required}) 
+   * trait({b:Trait.required})
    *
    * writing resolve({a:'b', b: undefined},trait({a:1,b:2})) makes it
    * clear that what is meant is to simply drop the old 'b' and rename
@@ -531,14 +531,14 @@ var Trait = (function(){
    * @throws 'Missing required property' the trait still contains a
    *         required property.
    * @throws 'Remaining conflicting property' if the trait still
-   *         contains a conflicting property. 
+   *         contains a conflicting property.
    *
    * Trait.create is like Object.create, except that it generates
    * high-integrity or final objects. In addition to creating a new object
    * from a trait, it also ensures that:
    *    - an exception is thrown if 'trait' still contains required properties
    *    - an exception is thrown if 'trait' still contains conflicting
-   *      properties 
+   *      properties
    *    - the object is and all of its accessor and method properties are frozen
    *    - the 'this' pseudovariable in all accessors and methods of
    *      the object is bound to the composed object.
@@ -549,7 +549,7 @@ var Trait = (function(){
    *      (the properties are simply dropped from the composite object)
    *    - no exception is thrown if 'trait' still contains conflicting
    *      properties (these properties remain as conflicting
-   *      properties in the composite object) 
+   *      properties in the composite object)
    *    - neither the object nor its accessor and method properties are frozen
    *    - the 'this' pseudovariable in all accessors and methods of
    *      the object is left unbound.
@@ -557,7 +557,7 @@ var Trait = (function(){
   function create(proto, trait) {
     var self = Object_create(proto);
     var properties = {};
-  
+
     forEach(getOwnPropertyNames(trait), function (name) {
       var pd = trait[name];
       // check for remaining 'required' properties
@@ -624,7 +624,7 @@ var Trait = (function(){
     }
     return true;
   }
-  
+
   // if this code is ran in ES3 without an Object.create function, this
   // library will define it on Object:
   if (!Object.create) {
@@ -632,11 +632,11 @@ var Trait = (function(){
   }
   // ES5 does not by default provide Object.getOwnProperties
   // if it's not defined, the Traits library defines this utility
-  // function on Object 
+  // function on Object
   if(!Object.getOwnProperties) {
     Object.getOwnProperties = getOwnProperties;
   }
-  
+
   // expose the public API of this module
   function Trait(record) {
     // calling Trait as a function creates a new atomic trait
@@ -650,7 +650,7 @@ var Trait = (function(){
   Trait.eqv = freeze(eqv);
   Trait.object = freeze(object); // not essential, cf. create + trait
   return freeze(Trait);
-  
+
 })();
 
 if (typeof module !== "undefined") { // NodeJS default export

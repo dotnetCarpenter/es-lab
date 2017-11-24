@@ -1,4 +1,4 @@
-Traits: issues, comments, todo's...
+# Traits: issues, comments, todo's... #
 
 If we are completely transparent about the representation of traits as property maps, then traits.js truly becomes _both_ a general-purpose property map combinator library _and_ a principled approach to trait-based object composition.
 
@@ -14,8 +14,9 @@ two problems:
 - the 'this' variable in the common object cannot be bound. Must be left unbound such that 'this' can refer to the per-instance sub-object. Problem: this object is accessible from the trait instance via Object.getPrototypeOf
 this would not be a problem for open:true objects.
 
-== Extensible Annotations ==
+## Extensible Annotations ##
 
+```js
 Trait.transform = function(pdm, transformations) {
   var props = {};
   for (var prop in pdm) {// only own props
@@ -49,8 +50,9 @@ Trait.create = function(proto, pdm, additionalRules) {
              Trait.transform(pdm,
                Object.create(additionalRules, traitRules))));
 };
+```
 
-== Design rationale not pursued ==
+## Design rationale not pursued ##
 
 - rename 'open' option to 'final'?
 final has the advantage that:
@@ -69,9 +71,11 @@ We could still provide a to_property_map(trait) -> pdmap function as well.
 
 We could also refactor compose, resolve, override to be defined as methods on the trait function objects:
 
+```js
 var T = trait({...});
 var T3 = T.compose(T2);
 var o = new T3({ extend: proto }); // or T3(options) without new
+```
 
 Pro:
 - methods do not pollute an importer's namespace (only need to make available a 'trait' constructor, all other methods are defined on traits)

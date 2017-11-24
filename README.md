@@ -51,7 +51,7 @@ Name clashes that are never explicitly resolved will eventually lead to a compos
 
 Trait composition is declarative in the sense that the ordering of composed traits does not matter. In other words, unlike mixins/multiple inheritance, trait composition is commutative and associative. This tremendously reduces the cognitive burden of reasoning about deeply nested levels of trait composition. In languages that support traits as a compile-time entity (similar to classes), trait composition can be entirely performed at compile-time, effectively "flattening" the composition and eliminating any composition overhead at runtime.
 
-Since their publication in 2003, traits have received widespread adoption in the PL community, although the details of the many traits implementations differ significantly from the original implementation defined for Smalltalk. Traits have been adopted in Perl (see e.g. the [Class::Trait module](http://search.cpan.org/~ovid/Class-Trait-0.31/lib/Class/Trait.pm)), Fortress, PLT Scheme [[4](#user-content-ref4)], Slate, ... Scala supports ["traits"](http://www.scala-lang.org/node/126), although these should have been called [mixins](http://www.scala-lang.org/node/117) (there is no explicit conflict resolution). Traits are also considered for inclusion in [PHP](https://wiki.php.net/rfc/horizontalreuse).
+Since their publication in 2003, traits have received widespread adoption in the PL community, although the details of the many traits implementations differ significantly from the original implementation defined for Smalltalk. Traits have been adopted in Perl (see e.g. the [Class::Trait module](http://search.cpan.org/~ovid/Class-Trait-0.31/lib/Class/Trait.pm)), Fortress, PLT Scheme [[4](#user-content-ref4)], Slate, ... Scala supports ["traits"](https://www.scala-lang.org/node/126), although these should have been called [mixins](https://www.scala-lang.org/node/117) (there is no explicit conflict resolution). Traits are also considered for inclusion in [PHP](https://wiki.php.net/rfc/horizontalreuse).
 
 
 # Traits for Javascript #
@@ -149,7 +149,6 @@ The trait `T` *provides* the properties `b` and `c` and *requires* the property 
 The attributes `required` and `method` are not standard ES5 attributes, but are interpreted by the `traits.js` library.
 
 
-
 The objects passed to `Trait` should normally only serve as plain records that describe a simple trait's properties. We expect them to be used mostly in conjunction with Javascript's excellent object literal syntax. The `Trait` function turns an object into a property descriptor map with the following constraints:
 
 + Only the object's own properties are turned into trait properties (its prototype is not significant).
@@ -167,7 +166,6 @@ The objects passed to `Trait` should normally only serve as plain records that d
 #### Composing Traits ####
 
 The function `Trait.compose` is the workhorse of `traits.js`. It composes zero or more traits into a single composite trait. For example:
-
 
 
 ```js
@@ -188,9 +186,7 @@ The composite trait contains all of the own properties of all of the argument tr
   'c' : { value: 2 } }
 ```
 
-When `compose` encounters a property name that is defined by two or more argument traits, it marks the resulting property in the composite trait as a "conflicting property" by means of the `conflict: true` atrribute (again, this is not a standard ES5 attribute). Conflicting properties are accessor properties whose `get` and `set` methods (denoted using `&lt;conflict&gt;` above) raise an appropriate runtime exception when invoked.
-
-
+When `compose` encounters a property name that is defined by two or more argument traits, it marks the resulting property in the composite trait as a "conflicting property" by means of the `conflict: true` atrribute (again, this is not a standard ES5 attribute). Conflicting properties are accessor properties whose `get` and `set` methods (denoted using `<conflict>` above) raise an appropriate runtime exception when invoked.
 
 Two properties `p1` and `p2` with the same name are **not** in conflict if:
 
@@ -199,7 +195,6 @@ Two properties `p1` and `p2` with the same name are **not** in conflict if:
 + `p1` and `p2` denote the "same" property. Two properties are considered to be the same if they refer to the same values and have the same attributes. This implies that it is OK for properties to be "inherited" via multiple composition paths from the same trait (cf. diamond inheritance: `T1 = Trait.compose(T2,T3)` where `T2 = Trait.compose(T4,...)` and `T3 = Trait.compose(T4, ...)`.
 
 `compose` is a commutative and associative operation: the ordering of its arguments does not matter, and `compose(t1,t2,t3)` is equivalent to, for example, `compose(t1,compose(t2,t3))` or `compose(compose(t2,t1),t3)`.
-
 
 
 #### Resolving Conflicts ####
