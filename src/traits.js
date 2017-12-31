@@ -70,7 +70,7 @@ var Trait = (function(){
   var hasOwnProperty = bindThis(call, Object.prototype.hasOwnProperty);
   var slice = bindThis(call, Array.prototype.slice);
 
-  // provide a simpler and faster forEach implementation than the native forEach in most browsers
+  // feature testing such that traits.js runs on both ES3 and ES5
   var forEach = function(arr, fun) {
     for (var i = 0, len = arr.length; i < len; i++) { fun(arr[i]); }
   };
@@ -651,10 +651,6 @@ var Trait = (function(){
   Trait.object = freeze(object); // not essential, cf. create + trait
   return freeze(Trait);
 
-})();
+}());
 
-if (typeof module !== "undefined") { // NodeJS default export
-  module.exports = Trait;
-} else if (typeof exports !== "undefined") { // CommonJS module support
-  exports.Trait = Trait;
-}
+export default Trait;

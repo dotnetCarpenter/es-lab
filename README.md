@@ -9,6 +9,12 @@ Then:
 var Trait = require('traits.js');
 ```
 
+OR
+
+```html
+<script src="https://unpkg.com/traits.js@1/dist/traits.min.js"></script>
+```
+
 # Introduction #
 
 [traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.3/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.

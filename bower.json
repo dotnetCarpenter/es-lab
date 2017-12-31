@@ -5,7 +5,7 @@
     "tvcutsem"
   ],
   "description": "Javascript library for Trait composition",
-  "main": "src/traits.js",
+  "main": "dist/traits.js",
   "moduleType": [
     "globals",
     "node"
@@ -19,9 +19,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
     "tests",
-    "site",
-    "karma.conf.js"    
+    "karma.conf.js"
   ]
 }
