@@ -1,6 +1,6 @@
 {
   "name": "traits.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "dist/traits.js",
   "directories": {
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "posttest": "codecov",
-    "postinstall": "mkdir dist && npm run build",
+    "postinstall": "npm run build",
     "build": "rollup src/traits.js --output.file dist/traits.js --output.format umd --name Trait & rollup --config rollup.minify.config.js --output.file dist/traits.min.js --output.format umd --name Trait"
   },
   "repository": {

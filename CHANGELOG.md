@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Fill in changes for the next release, here.
 
+
+## [1.1.2] - 2018-01-01
+### Changed
+- Remove mkdir for dist folder since npm apparently wants to do that for us and re-creating a folder will throw an error.
+
 ## [1.1.1] - 2018-01-01
 ### Changed
 - Remove mkdirp as the module is not available on post-install and hence not working to create the dist folder - using normal mkdir instead.
