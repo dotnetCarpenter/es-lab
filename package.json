@@ -1,6 +1,6 @@
 {
   "name": "traits.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "dist/traits.js",
   "directories": {
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "posttest": "codecov",
-    "postinstall": "mkdirp dist && npm run build",
+    "postinstall": "mkdir dist && npm run build",
     "build": "rollup src/traits.js --output.file dist/traits.js --output.format umd --name Trait & rollup --config rollup.minify.config.js --output.file dist/traits.min.js --output.format umd --name Trait"
   },
   "repository": {
@@ -42,7 +42,6 @@
     "karma-coverage": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-qunit": "^1.2.1",
-    "mkdirp": "^0.5.1",
     "phantomjs-prebuilt": "^2.1.16",
     "qunitjs": "^2.4.1",
     "rollup": "^0.53.2",
