@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Fill in changes for the next release, here.
 
+## [1.1.3] - 2018-01-01
+### Changed
+- Use prepublish instead of postinstall npm hook, since postinstall can only use direct dependencies and we need to use rollup to create
+our UMD versions of traits.js.
 
 ## [1.1.2] - 2018-01-01
 ### Changed
@@ -34,5 +38,7 @@ unminified version, your module bundler can optimize the minification process ac
 ### Removed
 - Nodejs and Commonjs detection in `traits.js`.
 
+[1.1.3]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.3
+[1.1.2]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.2
 [1.1.1]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.1
 [1.1.0]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.0
