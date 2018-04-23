@@ -17,7 +17,7 @@ OR
 
 # Introduction #
 
-[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.0.3/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
+[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.1.4/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
 
 See also: **[API](https://traitsjs.github.io/traits.js-website/api)** | **[Tutorial](https://traitsjs.github.io/traits.js-website/tutorial.html)** | **[howtonode article](https://howtonode.org/traitsjs)** | **[Paper](https://traitsjs.github.io/traits.js-website/files/traitsJS_PLASTIC2011_final.pdf)**
 
@@ -348,7 +348,7 @@ var o2 = Trait.create(Object.prototype, makeStatefulTrait(5));
 
 ## Examples ##
 
-This [example code](https://github.com/traitsjs/traits.js/blob/master/src/examples.js) demonstrates how `traits.js` is used to build reusable "enumerable" and "comparable" abstractions as traits. It also shows how a concrete collection-like object (in this case an interval data type) can make use of such traits. For an in-depth discussion of how traits can be used to build a real Collections API, see [<a href='#user-content-ref3'>3</a>].
+This [example code](https://github.com/traitsjs/traits.js/blob/master/examples/examples.js) demonstrates how `traits.js` is used to build reusable "enumerable" and "comparable" abstractions as traits. It also shows how a concrete collection-like object (in this case an interval data type) can make use of such traits. For an in-depth discussion of how traits can be used to build a real Collections API, see [<a href='#user-content-ref3'>3</a>].
 
 
 The [animationtrait example](https://github.com/traitsjs/traits.js/blob/master/src/trait-example.js) is a direct translation of the same example from [<a href='#user-content-ref2'>2</a>], showcasing stateful traits.
