@@ -42,6 +42,7 @@ unminified version, your module bundler can optimize the minification process ac
 ### Removed
 - Nodejs and Commonjs detection in _traits.js_.
 
+[1.1.4]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.4
 [1.1.3]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.3
 [1.1.2]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.2
 [1.1.1]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.1
