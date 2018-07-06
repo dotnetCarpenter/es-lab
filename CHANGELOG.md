@@ -10,8 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Fill in changes for the next release, here.
 
+## [1.1.5] - 2018-07-06
 ### Fixed
-- `Trait.create(null, trait)` would fail because proto is `null`.
+- `Trait.create(null, trait)` would fail if a `Trait.required` property was not present and the prototype is `null`.
 
 ## [1.1.4] - 2018-04-23
 ### Fixed
@@ -45,6 +46,7 @@ unminified version, your module bundler can optimize the minification process ac
 ### Removed
 - Nodejs and Commonjs detection in _traits.js_.
 
+[1.1.5]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.5
 [1.1.4]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.4
 [1.1.3]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.3
 [1.1.2]:https://github.com/traitsjs/traits.js/releases/tag/v1.1.2
