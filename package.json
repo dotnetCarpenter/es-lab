@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "test": "karma start karma.conf.js",
-    "posttest": "codecov",
     "prepublish": "npm run build",
     "build": "rollup src/traits.js --output.file dist/traits.js --output.format umd --name Trait & rollup --config rollup.minify.config.js --output.file dist/traits.min.js --output.format umd --name Trait"
   },
