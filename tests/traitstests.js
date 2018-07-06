@@ -504,6 +504,16 @@
     }
   });
 
+  QUnit.test('can handle prototype being null, while searching for a required property', function(assert) {
+    try {
+      Trait.create(null,
+                   Trait({ foo: Trait.required }));
+      assert.ok(false, 'expected create to complain about missing required props');
+    } catch(e) {
+      assert.strictEqual( e.message, 'Missing required property: foo', 'required prop error');
+    }
+  });
+
   QUnit.test('exception for unresolved conflicts', function(assert) {
     try {
       Trait.create(Object.prototype,
