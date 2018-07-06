@@ -595,8 +595,8 @@
     try {
       var o7 = Object.create(null,
                    Trait({ foo: Trait.required }));
-      assert.ok(('foo' in o4), 'required property present');
-      assert.ok(!(o4.foo), 'required property undefined');
+      assert.ok(('foo' in o7), 'required property present');
+      assert.ok(!(o7.foo), 'required property undefined');
     } catch(e) {
       assert.ok(false, 'did not expect create to complain about required props');
     }
