@@ -1,8 +1,8 @@
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 import { minify } from 'uglify-es'
 
 export default {
-  input: 'src/traits.js',
+  input: 'src/traits.mjs',
   plugins: [
     uglify({}, minify)
   ]

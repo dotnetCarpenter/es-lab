@@ -3,7 +3,7 @@
   "version": "1.1.5",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "dist/traits.js",
-  "module": "src/traits.js",
+  "module": "src/traits.mjs",
   "directories": {
     "test": "tests"
   },
@@ -15,7 +15,7 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "prepublish": "npm run build",
-    "build": "rollup src/traits.js --output.file dist/traits.js --output.format umd --name Trait & rollup --config rollup.minify.config.js --output.file dist/traits.min.js --output.format umd --name Trait"
+    "build": "rollup src/traits.mjs --output.file dist/traits.js --output.format umd --name Trait & rollup --config rollup.minify.config.js --output.file dist/traits.min.js --output.format umd --name Trait"
   },
   "repository": {
     "type": "git",
@@ -41,12 +41,12 @@
     "karma": "^2.0.4",
     "karma-coverage": "^1.1.2",
     "karma-phantomjs-launcher": "^1.0.4",
-    "karma-qunit": "^1.2.1",
+    "karma-qunit": "^2.1.0",
     "phantomjs-prebuilt": "^2.1.16",
-    "qunitjs": "^2.4.1",
-    "rollup": "^0.53.4",
-    "rollup-plugin-uglify": "^2.0.1",
-    "uglify-es": "^3.3.10"
+    "qunit": "^2.6.1",
+    "rollup": "^0.62.0",
+    "rollup-plugin-uglify": "^4.0.0",
+    "uglify-es": "^3.3.9"
   },
   "contributors": [
     "dotnetCarpenter",
