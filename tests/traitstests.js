@@ -590,3 +590,14 @@
       assert.strictEqual( e.message, 'Remaining conflicting property: m', 'diamond prop conflict');
     }
   });
+
+  QUnit.test('can handle prototype being null', function(assert) {
+    try {
+      var o7 = Object.create(null,
+                   Trait({ foo: Trait.required }));
+      assert.ok(('foo' in o4), 'required property present');
+      assert.ok(!(o4.foo), 'required property undefined');
+    } catch(e) {
+      assert.ok(false, 'did not expect create to complain about required props');
+    }
+  });
