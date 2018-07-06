@@ -1,6 +1,6 @@
 {
   "name": "traits.js",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "traits.js is a minimal, standards-compliant trait composition library for Javascript.",
   "main": "dist/traits.js",
   "module": "src/traits.js",
@@ -37,9 +37,9 @@
   },
   "homepage": "https://github.com/traitsjs/traits.js#readme",
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "karma": "^2.0.2",
-    "karma-coverage": "^1.1.1",
+    "codecov": "^3.0.3",
+    "karma": "^2.0.4",
+    "karma-coverage": "^1.1.2",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-qunit": "^1.2.1",
     "phantomjs-prebuilt": "^2.1.16",

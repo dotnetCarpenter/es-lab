@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Fill in changes for the next release, here.
 
+### Fixed
+- `Trait.create(null, trait)` would fail because proto is `null`.
+
 ## [1.1.4] - 2018-04-23
 ### Fixed
 - Use `"module"` in _package.json_ to enable ES2015-aware tools like _Rollup_ to take advantage of ES2015 module features.
