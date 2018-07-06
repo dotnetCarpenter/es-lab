@@ -562,8 +562,9 @@ var Trait = (function(){
       var pd = trait[name];
       // check for remaining 'required' properties
       // Note: it's OK for the prototype to provide the properties
+      // Fixed: proto can be null: https://github.com/traitsjs/traits.js/issues/11
       if (pd.required) {
-        if (!(name in proto)) {
+        if (proto === null || !(name in proto)) {
           throw new Error('Missing required property: '+name);
         }
       } else if (pd.conflict) { // check for remaining conflicting properties
