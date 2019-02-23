@@ -17,7 +17,7 @@ OR
 
 # Introduction #
 
-[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.1.4/src/traits.js) is a Javascript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [Ecmascript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing Ecmascript 3 implementations.
+[traits.js](https://raw.githubusercontent.com/traitsjs/traits.js/v1.1.4/src/traits.js) is a JavaScript library for Trait composition, as originally proposed in [[1](#user-content-ref1)] but closer to the object-based, lexically nestable traits defined in [[2](#user-content-ref2)]. The library has been designed for [ECMAScript 5.1](https://www.ecma-international.org/publications/standards/Ecma-262-arch.htm), but should be backwards-compatible with existing ECMAScript 3 implementations.
 
 See also: **[API](https://traitsjs.github.io/traits.js-website/api)** | **[Tutorial](https://traitsjs.github.io/traits.js-website/tutorial.html)** | **[howtonode article](https://howtonode.org/traitsjs)** | **[Paper](https://traitsjs.github.io/traits.js-website/files/traitsJS_PLASTIC2011_final.pdf)**
 
@@ -60,7 +60,7 @@ Trait composition is declarative in the sense that the ordering of composed trai
 Since their publication in 2003, traits have received widespread adoption in the PL community, although the details of the many traits implementations differ significantly from the original implementation defined for Smalltalk. Traits have been adopted in Perl (see e.g. the [Class::Trait module](http://search.cpan.org/~ovid/Class-Trait-0.31/lib/Class/Trait.pm)), Fortress, PLT Scheme [[4](#user-content-ref4)], Slate, ... Scala supports ["traits"](https://www.scala-lang.org/node/126), although these should have been called [mixins](https://www.scala-lang.org/node/117) (there is no explicit conflict resolution). Traits are also considered for inclusion in [PHP](https://wiki.php.net/rfc/horizontalreuse).
 
 
-# Traits for Javascript #
+# Traits for JavaScript #
 
 The above `Enumerable` example can be encoded using `traits.js` as follows:
 
@@ -88,9 +88,9 @@ r.inject(0,function(a,b){return a+b;}); // 10
 
 ### Traits as Property Maps ###
 
-`traits.js` represents traits as "property descriptor maps": objects whose keys represent property names and whose values are Ecmascript 5 "property descriptors" (this is the same data format as the one accepted by the standard ES5 functions `Object.create` and `Object.defineProperties`). Like classes, traits _describe_ object structure and can be _instantiated_ into runtime objects.
+`traits.js` represents traits as "property descriptor maps": objects whose keys represent property names and whose values are ECMAScript 5 "property descriptors" (this is the same data format as the one accepted by the standard ES5 functions `Object.create` and `Object.defineProperties`). Like classes, traits _describe_ object structure and can be _instantiated_ into runtime objects.
 
-Basic traits can be created from simple object descriptions (usually Javascript object literals) and further composed into 'composite' traits using a small set of composition functions (explained below). In order to use a (composite) trait, it must be "instantiated" into an object. When a trait is instantiated into an object `o`, the binding of the `this` pseudovariable within the trait's methods will refer to `o`. If a trait `T` defines a method `m` that requires (depends on) the method `r`, `m` should call this method using `this.r(...)`, and if that method was provided by some other trait, it will be found in the composite object `o`. The lexical scope of composed trait methods remains unaffected by trait composition.
+Basic traits can be created from simple object descriptions (usually JavaScript object literals) and further composed into 'composite' traits using a small set of composition functions (explained below). In order to use a (composite) trait, it must be "instantiated" into an object. When a trait is instantiated into an object `o`, the binding of the `this` pseudovariable within the trait's methods will refer to `o`. If a trait `T` defines a method `m` that requires (depends on) the method `r`, `m` should call this method using `this.r(...)`, and if that method was provided by some other trait, it will be found in the composite object `o`. The lexical scope of composed trait methods remains unaffected by trait composition.
 
 As mentioned in the background, trait composition is orthogonal to inheritance. `traits.js` does not expect traits to take part in object-inheritance (i.e. prototype delegation) and should only be composed via trait composition. Traits do not have a "prototype", but the objects they instantiate do, and these objects may take part in object-inheritance.
 
@@ -111,7 +111,7 @@ The function `Trait.eqv(t1,t2)` returns `true` if and only if t1 and t2 are equi
 
 The following figure depicts the operations exported by the library:
 <p><img src='https://traitsjs.github.io/traits.js-website/images/Traits.png' alt='Traits' align='center' width='80%'>
-<p>Both the circles and the rounded squares are Javascript objects, but they are intended to be used in very different ways.
+<p>Both the circles and the rounded squares are JavaScript objects, but they are intended to be used in very different ways.
 
 
 
@@ -155,13 +155,13 @@ The trait `T` *provides* the properties `b` and `c` and *requires* the property 
 The attributes `required` and `method` are not standard ES5 attributes, but are interpreted by the `traits.js` library.
 
 
-The objects passed to `Trait` should normally only serve as plain records that describe a simple trait's properties. We expect them to be used mostly in conjunction with Javascript's excellent object literal syntax. The `Trait` function turns an object into a property descriptor map with the following constraints:
+The objects passed to `Trait` should normally only serve as plain records that describe a simple trait's properties. We expect them to be used mostly in conjunction with JavaScript's excellent object literal syntax. The `Trait` function turns an object into a property descriptor map with the following constraints:
 
 + Only the object's own properties are turned into trait properties (its prototype is not significant).
 
 + Data properties in the object record bound to the special `Trait.required` singleton are bound to a distinct "required" property descriptor (as shown above).
 
-+ Data properties in the object record bound to functions are interpreted as "methods". In order to ensure integrity, methods are distinguished from plain Javascript functions by `traits.js` in the following ways:
++ Data properties in the object record bound to functions are interpreted as "methods". In order to ensure integrity, methods are distinguished from plain JavaScript functions by `traits.js` in the following ways:
 
   + The methods and the value of their `.prototype` property are frozen.
 
@@ -308,7 +308,7 @@ The method `Trait.object` is a convenient shorthand for writing "object literals
 
 ### Stateful traits ###
 
-Traits were originally defined as stateless collections of methods only. `traits.js` allows stateful traits and allows traits to describe any Javascript property, regardless of whether it contains a function and regardless of whether it is a data or accessor property. If a trait property depends on mutable state, one should always "instantiate" such traits via 'maker' functions, to prevent a stateful trait from being composed multiple times with different objects:
+Traits were originally defined as stateless collections of methods only. `traits.js` allows stateful traits and allows traits to describe any JavaScript property, regardless of whether it contains a function and regardless of whether it is a data or accessor property. If a trait property depends on mutable state, one should always "instantiate" such traits via 'maker' functions, to prevent a stateful trait from being composed multiple times with different objects:
 
 ```js
 // don't do:
@@ -366,7 +366,7 @@ Because trait composition is essentially flattened out when a trait is instantia
 The downside of trait composition by flattening is that the number of methods per object is larger. To reduce the memory footprint, an efficient implementation should share the property structure resulting from a trait instantiation between all objects instantiated from the same `create` callsite. That is, it should be able to construct a single vtable to be shared by all objects returned from a single `create` callsite.
 
 
-While designing this library, great care has been taken to allow a Javascript engine to partially evaluate trait composition at "compile-time". In order for the partial evaluation scheme to work, programmers should use the library with some restrictions:
+While designing this library, great care has been taken to allow a JavaScript engine to partially evaluate trait composition at "compile-time". In order for the partial evaluation scheme to work, programmers should use the library with some restrictions:
 
 + The argument to `Trait` should be an object literal.
 + The first argument to `Trait.resolve` should be an object literal whose properties are either string literals or the literal `undefined`.
@@ -398,7 +398,7 @@ A `literal-property-map` is a property map defined as an object literal, with al
 
 
 
-If Javascript would at some point have the notion of interfaces or "brands" to classify objects, the API of the `create` function could be extended to allow for objects to be "branded" as follows:
+If JavaScript would at some point have the notion of interfaces or "brands" to classify objects, the API of the `create` function could be extended to allow for objects to be "branded" as follows:
 
 ```js
 var o = Trait.create(proto, trait, { implements: [ brand1, brand2, ... ] });
@@ -429,6 +429,6 @@ var o = Trait.create(
 ## References ##
 
 + [<a id=ref1>1</a>] "Traits: Composable units of Behavior" (Scharli et al., ECOOP 2003) (<a href='http://scg.unibe.ch/archive/papers/Scha03aTraits.pdf'>paper</a>): *the original presentation of traits, including a deep discussion on the advantages of traits over mixins and multiple inheritance.*
-+ [<a id="ref2">2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='https://soft.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to Javascript.*
++ [<a id="ref2">2</a>] "Adding State and Visibility Control to Traits using Lexical Nesting" (Van Cutsem et. al, ECOOP 2009) (<a href='https://soft.vub.ac.be/Publications/2009/vub-prog-tr-09-04.pdf'>paper</a>): *describes a trait system in a lexically-scoped, object-based language similar in style to JavaScript.*
 + [<a id="ref3">3</a>] "Applying Traits to the Smalltalk Collection Classes" (Black et al., OOPSLA 2003) (<a href='http://scg.unibe.ch/archive/papers/Blac03aTraitsHierarchy.pdf'>paper</a>): *describes a concrete experiment in which traits were used to refactor the Smalltalk Collections hierarchy.*
 + [<a id="ref4">4</a>] "Scheme with Classes, Mixins and Traits" (Flatt et al., APLAS 2006) (<a href='https://www.cs.utah.edu/plt/publications/aplas06-fff.pdf'>paper</a> ): *section 7, related work provides a very comprehensive discussion on the overloaded meaning of the words mixins and traits in various programming languages*
