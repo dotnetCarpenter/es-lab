@@ -420,9 +420,12 @@ function makeTrait(privateRequiredFoo) {
 var t1 = makeTraitProvidingFoo();
 var t2 = makeTrait(t1.foo);
 var o = Trait.create(
+  Object.prototype,
   Trait.compose(
-    Trait.resolve({foo: undefined},t1),
-    t2));
+    Trait.resolve({ foo: undefined }, t1),
+    t2
+  )
+);
 // foo is now a private method of the composition
 ```
 
